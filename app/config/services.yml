@@ -1,0 +1,44 @@
+parameters:
+
+services:
+  app.order.service:
+    class: AppBundle\Utils\OrderManager
+    arguments: ["@doctrine.orm.entity_manager", "@security.token_storage"]
+
+  app.ordered.products.service:
+    class: AppBundle\Utils\OrderedProductsManager
+    arguments: ["@ordered.products", "@doctrine.orm.entity_manager"]
+
+  app.order.from.cart.service:
+    class: AppBundle\Utils\CartManager
+    arguments: ["@cart", "@doctrine.orm.entity_manager"]
+
+  app.supply.manager.service:
+    class: AppBundle\Utils\SupplyManager
+    arguments: ["@supply.products", "@doctrine.orm.entity_manager"]
+
+  app.product.history.service:
+    class: AppBundle\Utils\ProductHistoryManager
+    arguments: ["@supply.products", "@ordered.products", "@doctrine.orm.entity_manager", "@product.history"]
+
+
+
+## ENTITIES:
+  ordered.products:
+    class: AppBundle\Entity\OrderedProducts
+
+  cart:
+    class: AppBundle\Entity\Cart
+    arguments: ["@user", "@products"]
+
+  user:
+    class: AppBundle\Entity\User
+
+  products:
+    class: AppBundle\Entity\Products
+
+  supply.products:
+    class: AppBundle\Entity\SupplyProducts
+
+  product.history:
+    class: AppBundle\Utils\ProductHistory

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    {% block redirect %}{% endblock %}
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" />
+    <script src="{{ asset('jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    {% block stylesheets %}{% endblock %}
+    <style>
+        body
+        {
+            padding-top: 70px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        {% block topnav %}
+            {% include '::navbar.html.twig' %}
+        {% endblock topnav %}
+        {% block body %}{% endblock %}
+    </div>
+
+</body>
+</html>

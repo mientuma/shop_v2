@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <table class="table table-striped">
+    <tr>
+        <th>#</th>
+        <th>Username</th>
+        <th>Info</th>
+    </tr>
+{% for user in users %}
+
+    <tr>
+        <th>{{ loop.index }}</th>
+        <th>{{ user.username }}</th>
+        <th><a href="{{ path('adminUserView', {'id': user.id}) }}" class="btn btn-default">Szczegóły</a></th>
+    </tr>
+
+{% endfor %}
+    </table>
+{% endblock %}
