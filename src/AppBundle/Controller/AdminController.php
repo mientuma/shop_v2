@@ -198,6 +198,19 @@ class AdminController extends BaseController
     }
 
     /**
+     * @Route("admin/stats/product/{id}", name="productStats")
+     */
+    public function productStatsAdminAction($id)
+    {
+        $product = $this->getDoctrine()->getRepository('AppBundle:Products')->findOneById($id);
+        $orderedProduct = $this->getDoctrine()->getRepository('AppBundle:OrderedProducts')->findByProductId($id);
+        $boughtCount = count($orderedProduct);
+        $orderIds = $this->getDoctrine()->getRepository('AppBundle:OrderedProducts')->findOrders($id);
+        dump($orderIds);
+        return $this->render('base.html.twig');
+    }
+
+    /**
      * @Route("admin/email", name="email")
      */
     public function emailAction()

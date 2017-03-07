@@ -47,4 +47,20 @@ class OrderedProductsRepository extends \Doctrine\ORM\EntityRepository
             'productStatus' => array('Częściowa rezerwacja, oczekuje na dostawę', 'Brak towaru, oczekuje na dostawę', 'Towar częściowo zarezerwowany')
         ));
     }
+
+    public function findOrders($id)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('o.order')
+            ->from('AppBundle:OrderedProducts', 'o')
+            ->where('o.productId = :id')
+            ->setParameter('id', $id);
+
+        return $qb->getQuery()->getArrayResult();
+    }
+
+    public function findLastByDate()
+    {
+
+    }
 }

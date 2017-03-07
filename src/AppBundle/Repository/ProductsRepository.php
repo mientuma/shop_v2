@@ -10,4 +10,10 @@ namespace AppBundle\Repository;
  */
 class ProductsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findOneById($id)
+    {
+        return $this->findOneBy(array(
+            'id' => $id
+        ));
+    }
 }
