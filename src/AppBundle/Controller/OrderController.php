@@ -78,7 +78,7 @@ class OrderController extends BaseController
     public function orderDetailsAction($orderId)
     {
         $order = $this->get('app.order.service')->getOrder($orderId);
-        $orderedProducts = $this->getDoctrine()->getRepository('AppBundle:OrderedProducts')->findById($orderId);
+        $orderedProducts = $this->getDoctrine()->getRepository('AppBundle:OrderedProducts')->findByOrderId($orderId);
         $orderDetails = $this->get('app.ordered.products.service')->countFinalPrice($orderedProducts);
         $deliveryPrice = $order->getDelivery()->getPrice();
         $sum = $this->get('app.ordered.products.service')->countSum($deliveryPrice, $orderDetails);
