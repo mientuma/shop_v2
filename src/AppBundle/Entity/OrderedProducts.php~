@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class OrderedProducts
 {
+
     /**
      * @var int
      *
@@ -239,11 +240,11 @@ class OrderedProducts
         return $this->finalPrice;
     }
 
-    /**
-     * @param mixed $finalPrice
-     */
-    public function setFinalPrice($finalPrice)
+    public function setFinalPrice()
     {
+        $quantity = $this->getProductQuantity();
+        $price = $this->getProductPrice();
+        $finalPrice = $quantity * $price;
         $this->finalPrice = $finalPrice;
     }
 
@@ -295,4 +296,7 @@ class OrderedProducts
     {
         return $this->productReserved;
     }
+
+    // Own Methods
+
 }
