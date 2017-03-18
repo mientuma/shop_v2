@@ -86,4 +86,16 @@ class OrderedProductsManager
             }
         }
     }
+
+    public function getOrderIds($orderedProducts)
+    {
+        $ids = array();
+        foreach ($orderedProducts as $op)
+        {
+            $this->orderedProduct = $op;
+            $id = $this->orderedProduct->getOrderId();
+            $ids[] .= $id;
+        }
+        return $ids;
+    }
 }

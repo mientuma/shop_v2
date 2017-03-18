@@ -198,6 +198,8 @@ class AdminController extends BaseController
     }
 
     /**
+     * @param $id
+     * @return Response
      * @Route("admin/stats/product/{id}", name="productStats")
      */
     public function productStatsAdminAction($id)
@@ -205,9 +207,16 @@ class AdminController extends BaseController
         $product = $this->getDoctrine()->getRepository('AppBundle:Products')->findOneById($id);
         $orderedProduct = $this->getDoctrine()->getRepository('AppBundle:OrderedProducts')->findByProductId($id);
         $boughtCount = count($orderedProduct);
-        $orderIds = $this->getDoctrine()->getRepository('AppBundle:OrderedProducts')->findOrders($id);
-        dump($orderIds);
-        return $this->render('base.html.twig');
+        $orderedProducts = $this->getDoctrine()->getRepository('AppBundle:OrderedProducts')->findOrderIds($id);
+        $orderIds = $this->get('app.ordered.products.service')->getOrderIds($orderedProducts);
+        $orders = $this->getDoctrine()->getRepository('AppBundle:Orders')->findOrdersByIds($orderIds);
+        dump($orders);
+
+        return $this->render('default/productStats.html.twig', array(
+            'product' => $product,
+            'boughtCount' => $boughtCount,
+            'orders' => $orders
+        ));
     }
 
     /**

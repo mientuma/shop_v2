@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="container">
+        {{ product.name }}<br/>
+        {{ boughtCount }}<br/>
+        {% for order in orders %}
+            {{ order.id }}
+        {% endfor %}
+    </div>
+{% endblock %}

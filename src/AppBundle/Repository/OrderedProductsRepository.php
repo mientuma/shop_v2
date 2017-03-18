@@ -48,19 +48,14 @@ class OrderedProductsRepository extends \Doctrine\ORM\EntityRepository
         ));
     }
 
-    public function findOrders($id)
+    public function findOrderIds($id)
     {
         $qb = $this->_em->createQueryBuilder();
-        $qb->select('o.order')
+        $qb->select('o')
             ->from('AppBundle:OrderedProducts', 'o')
             ->where('o.productId = :id')
             ->setParameter('id', $id);
 
-        return $qb->getQuery()->getArrayResult();
-    }
-
-    public function findLastByDate()
-    {
-
+        return $qb->getQuery()->getResult();
     }
 }

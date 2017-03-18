@@ -39,6 +39,16 @@ class OrdersRepository extends \Doctrine\ORM\EntityRepository
             ->orderBy('o.orderTime', 'ASC');
 
         return $qb->getQuery()->getResult();
+    }
 
+    public function findOrdersByIds($orderIds)
+    {
+        $qb = $this->_em->createQueryBuilder();
+
+        $qb->select('o')
+            ->from('AppBundle:Orders', 'o')
+            ->where($qb->expr()->in('o.id', $orderIds));
+
+        return $qb->getQuery()->getResult();
     }
 }
