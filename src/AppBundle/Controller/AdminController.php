@@ -210,7 +210,6 @@ class AdminController extends BaseController
         $orderedProducts = $this->getDoctrine()->getRepository('AppBundle:OrderedProducts')->findOrderIds($id);
         $orderIds = $this->get('app.ordered.products.service')->getOrderIds($orderedProducts);
         $orders = $this->getDoctrine()->getRepository('AppBundle:Orders')->findOrdersByIds($orderIds);
-        dump($orders);
 
         return $this->render('default/productStats.html.twig', array(
             'product' => $product,

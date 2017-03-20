@@ -31,14 +31,18 @@ class ProductHistoryManager
         {
             $this->supplies = $sp;
             $time = $this->supplies->getSupply()->getDate();
-            $user = $this->supplies->getSupply()->getUserId();
+            $userId = $this->supplies->getSupply()->getUserId();
+            $username = $this->supplies->getSupply()->getUser()->getUsername();
             $quantity = $this->supplies->getProductQuantity();
-            $status = 'supply';
+            $statusId = $this->supplies->getSupplyId();
+            $status = "Dostawa";
             $ph = new ProductHistory();
 
             $ph->setTime($time);
-            $ph->setUser($user);
+            $ph->setUserId($userId);
+            $ph->setUsername($username);
             $ph->setQuantity($quantity);
+            $ph->setStatusId($statusId);
             $ph->setStatus($status);
 
             array_push($phArray, $ph);
@@ -49,14 +53,18 @@ class ProductHistoryManager
         {
             $this->op = $op;
             $time = $this->op->getOrder()->getOrderTime();
-            $user = $this->op->getOrder()->getUserId();
+            $userId = $this->op->getOrder()->getUserId();
+            $username = $this->op->getOrder()->getUser()->getUsername();
             $quantity = $this->op->getProductQuantity();
-            $status = 'order';
+            $statusId = $this->op->getOrderId();
+            $status = "Zamówienie";
             $ph = new ProductHistory();
 
             $ph->setTime($time);
-            $ph->setUser($user);
+            $ph->setUserId($userId);
+            $ph->setUsername($username);
             $ph->setQuantity($quantity * -1);
+            $ph->setStatusId($statusId);
             $ph->setStatus($status);
 
             array_push($phArray, $ph);

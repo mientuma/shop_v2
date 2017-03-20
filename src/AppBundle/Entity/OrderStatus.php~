@@ -63,4 +63,3 @@ class OrderStatus
         return $this->status;
     }
 }
-

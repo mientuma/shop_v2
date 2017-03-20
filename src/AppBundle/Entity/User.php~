@@ -33,6 +33,12 @@ class User extends BaseUser
     private $orders;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Supply", mappedBy="user")
+     * @ORM\JoinColumn(name="id", referencedColumnName="userId")
+     */
+    private $supply;
+
+    /**
      * @return mixed
      */
     public function getCart()

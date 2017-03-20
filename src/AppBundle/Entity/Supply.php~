@@ -48,6 +48,12 @@ class Supply
      */
     private $supplyProducts;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="supply")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="id")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->date = new \DateTime();

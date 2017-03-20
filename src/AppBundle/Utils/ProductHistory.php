@@ -6,9 +6,11 @@ namespace AppBundle\Utils;
 class ProductHistory
 {
     private $time;
-    private $user;
+    private $userId;
+    private $username;
     private $quantity;
     private $status;
+    private $statusId;
     private $currentQuantity;
 
     /**
@@ -30,17 +32,33 @@ class ProductHistory
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getUserId()
     {
-        return $this->user;
+        return $this->userId;
     }
 
     /**
-     * @param mixed $user
+     * @param mixed $userId
      */
-    public function setUser($user)
+    public function setUserId($userId)
     {
-        $this->user = $user;
+        $this->userId = $userId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
     }
 
     /**
@@ -73,6 +91,22 @@ class ProductHistory
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusId()
+    {
+        return $this->statusId;
+    }
+
+    /**
+     * @param mixed $statusId
+     */
+    public function setStatusId($statusId)
+    {
+        $this->statusId = $statusId;
     }
 
     /**

@@ -33,6 +33,12 @@ class User extends BaseUser
     private $orders;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Supply", mappedBy="user")
+     * @ORM\JoinColumn(name="id", referencedColumnName="userId")
+     */
+    private $supply;
+
+    /**
      * @return mixed
      */
     public function getCart()
@@ -113,4 +119,38 @@ class User extends BaseUser
         $this->orders = new ArrayCollection();
     }
 
+
+    /**
+     * Add supply
+     *
+     * @param \AppBundle\Entity\Supply $supply
+     *
+     * @return User
+     */
+    public function addSupply(\AppBundle\Entity\Supply $supply)
+    {
+        $this->supply[] = $supply;
+
+        return $this;
+    }
+
+    /**
+     * Remove supply
+     *
+     * @param \AppBundle\Entity\Supply $supply
+     */
+    public function removeSupply(\AppBundle\Entity\Supply $supply)
+    {
+        $this->supply->removeElement($supply);
+    }
+
+    /**
+     * Get supply
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSupply()
+    {
+        return $this->supply;
+    }
 }

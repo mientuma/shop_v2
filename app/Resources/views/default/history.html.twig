@@ -20,10 +20,10 @@
                 {% endif %}
                         <td>{{ loop.index }}.</td>
                         <td>{{ history.time|date("d.m.y H:i:s")}}</td>
-                        <td>{{ history.user }}</td>
+                        <td><a href="{{ path('adminUserView', {'id': history.userId}) }}" target="_blank">{{ history.username }}</a></td>
                         <td>{{ history.quantity }} szt.</td>
                         <td>{{ history.currentQuantity }} szt.</td>
-                        <td>{{ history.status }}</td>
+                        <td><a href="{{ path('adminOrdersDetails', {'orderId': history.statusId}) }}" target="_blank">{{ history.status }} #{{ history.statusId }}</a></td>
                     </tr>
             {% endfor %}
         </table>
