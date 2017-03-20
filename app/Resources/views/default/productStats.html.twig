@@ -3,10 +3,28 @@
 
 {% block body %}
     <div class="container">
-        {{ product.name }}<br/>
-        {{ boughtCount }}<br/>
-        {% for order in orders %}
-            {{ order.id }}
-        {% endfor %}
+        <h1>
+            {{ product.name }}<br/>
+        </h1>
+
+        <h3>Kupiony: {{ boughtCount }} razy <a href="{{ path('adminHistory', {'id': product.id}) }}" target="_blank">(zobacz historię)</a><br/></h3>
+
+        <br><br>
+        <h4>Ostatnie zamówienia:</h4>
+        <div style="width: 50%">
+            <table class="table table-striped">
+                <tr>
+                    <td>#</td>
+                    <td>Data</td>
+                </tr>
+            {% for order in orders %}
+                <tr>
+                    <td><a href="{{ path('adminOrdersDetails', {'orderId': order.id}) }}" target="_blank">Zamówienie #{{ order.id }}</a></td>
+                    <td>{{ order.orderTime|date("d.m.y H:i:s") }}</td>
+                </tr>
+                <br />
+            {% endfor %}
+            </table>
+        </div>
     </div>
 {% endblock %}
