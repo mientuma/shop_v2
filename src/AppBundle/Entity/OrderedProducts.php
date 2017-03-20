@@ -233,23 +233,6 @@ class OrderedProducts
     }
 
     /**
-     * @return mixed
-     */
-    public function getFinalPrice()
-    {
-        return $this->finalPrice;
-    }
-
-    public function setFinalPrice()
-    {
-        $quantity = $this->getProductQuantity();
-        $price = $this->getProductPrice();
-        $finalPrice = $quantity * $price;
-        $this->finalPrice = $finalPrice;
-    }
-
-
-    /**
      * Set productStatus
      *
      * @param string $productStatus
@@ -299,4 +282,19 @@ class OrderedProducts
 
     // Own Methods
 
+    /**
+     * @return mixed
+     */
+    public function getFinalPrice()
+    {
+        return $this->finalPrice;
+    }
+
+    public function setFinalPrice()
+    {
+        $quantity = $this->getProductQuantity();
+        $price = $this->getProductPrice();
+        $finalPrice = $quantity * $price;
+        $this->finalPrice = $finalPrice;
+    }
 }

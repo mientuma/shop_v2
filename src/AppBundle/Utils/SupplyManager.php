@@ -31,4 +31,28 @@ class SupplyManager
             $this->em->flush();
         }
     }
+
+    public function countFinalPrice($suppliedProducts)
+    {
+        foreach($suppliedProducts as $suppliedProduct)
+        {
+            $this->supply = $suppliedProduct;
+            $this->supply->setFinalPrice();
+        }
+
+        return $suppliedProducts;
+    }
+
+    public function countSum($supplyDetails)
+    {
+        $sum = null;
+
+        foreach ($supplyDetails as $supplyRow)
+        {
+            $this->supply = $supplyRow;
+            $sum += $this->supply->getFinalPrice();
+        }
+
+        return $sum;
+    }
 }

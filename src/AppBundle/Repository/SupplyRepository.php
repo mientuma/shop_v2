@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class SupplyRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByTimeRange($timeRange)
+    {
+        $qb = $this->_em->createQueryBuilder();
+
+        $qb->select('s')
+            ->from('AppBundle:Supply', 's')
+            ->where('s.date BETWEEN :timeRange AND s.date')
+            ->setParameter('timeRange', $timeRange)
+            ->orderBy('s.date', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
 }

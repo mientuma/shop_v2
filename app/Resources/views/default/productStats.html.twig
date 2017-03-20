@@ -7,7 +7,10 @@
             {{ product.name }}<br/>
         </h1>
 
-        <h3>Kupiony: {{ boughtCount }} razy <a href="{{ path('adminHistory', {'id': product.id}) }}" target="_blank">(zobacz historię)</a><br/></h3>
+        <h3>
+            Kupiony: {{ boughtCount }} razy <a href="{{ path('adminHistory', {'id': product.id}) }}" target="_blank">(zobacz historię)</a><br/><br/>
+            Obecnie na stanie: {{ product.quantity }} szt.
+        </h3>
 
         <br><br>
         <h4>Ostatnie zamówienia:</h4>

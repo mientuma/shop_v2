@@ -6,7 +6,6 @@ namespace AppBundle\Utils;
 use AppBundle\Entity\OrderedProducts;
 use AppBundle\Entity\SupplyProducts;
 use Doctrine\ORM\EntityManager;
-use AppBundle\Utils\ProductHistory;
 
 class ProductHistoryManager
 {

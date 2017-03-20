@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_end(form) }}
+        <table class="table table-striped">
+            <tr>
+                <td>#</td>
+                <td>ID dostawy:</td>
+                <td>Przyjmujący dostawę:</td>
+                <td>Data dostawy:</td>
+                <td></td>
+            </tr>
+        {% for supply in supplies %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><a href="{{ path('adminSupplyDetails', {'id': supply.id}) }}">{{ supply.id }}</a></td>
+                <td><a href="{{ path('adminUserView', {'id': supply.user.id}) }}" target="_blank">{{ supply.user.username}}</a></td>
+                <td>{{ supply.date|date("d.m.y H:i:s") }}</td>
+                <td><a href="{{ path('adminSupplyDetails', {'id': supply.id}) }}" class="btn btn-default">Szczegóły</a> </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

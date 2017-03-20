@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Orders;
 use AppBundle\Entity\Supply;
 use AppBundle\Form\OrderSelectionForm;
+use AppBundle\Form\SupplySelectionForm;
 use AppBundle\Form\Type\SupplyForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +29,7 @@ class AdminController extends BaseController
      */
     public function ordersAdminAction(Request $request)
     {
-        $orders = $this->get('app.order.service')->getOrders();
+        $orders = $this->getDoctrine()->getRepository('AppBundle:Orders')->findAll();
         $order = new Orders();
         $form = $this->createForm(OrderSelectionForm::class, $order);
         $form->handleRequest($request);
@@ -61,6 +62,47 @@ class AdminController extends BaseController
             'orderDetails' => $orderDetails,
             'sum' => $sum,
             'order' => $order
+        ));
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     * @Route("/admin/supplies", name="adminSupplies")
+     */
+    public function suppliesAdminAction(Request $request)
+    {
+        $supplies = $this->getDoctrine()->getRepository('AppBundle:Supply')->findAll();
+        $supply = new Supply();
+        $form = $this->createForm(SupplySelectionForm::class, $supply);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $timeRange = $form->get('date')->getData();
+            $supplies = $this->getDoctrine()->getRepository('AppBundle:Supply')->findByTimeRange($timeRange);
+        }
+        return $this->render('default/supplyListAdmin.html.twig', array(
+            'supplies' => $supplies,
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @param $id
+     * @return Response
+     * @Route("/admin/supply/details/{id}", name="adminSupplyDetails")
+     */
+    public function suppliesDetailsAdminAction($id)
+    {
+        $supply = $this->getDoctrine()->getRepository('AppBundle:Supply')->find($id);
+        $suppliedProducts = $this->getDoctrine()->getRepository('AppBundle:SupplyProducts')->findBySupplyId($id);
+        $supplyDetails = $this->get('app.supply.manager.service')->countFinalPrice($suppliedProducts);
+        $sum = $this->get('app.supply.manager.service')->countSum($supplyDetails);
+
+        return $this->render('default/supplyDetailsAdmin.html.twig', array(
+            'supplyDetails' => $supplyDetails,
+            'sum' => $sum,
+            'supply' => $supply
         ));
     }
 

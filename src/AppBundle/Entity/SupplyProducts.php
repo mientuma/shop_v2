@@ -61,6 +61,8 @@ class SupplyProducts
      */
     private $product;
 
+    private $finalPrice;
+
     /**
      * Get id
      *
@@ -213,5 +215,23 @@ class SupplyProducts
     public function getProduct()
     {
         return $this->product;
+    }
+
+    // Own methods
+
+    /**
+     * @return mixed
+     */
+    public function getFinalPrice()
+    {
+        return $this->finalPrice;
+    }
+
+    public function setFinalPrice()
+    {
+        $quantity = $this->getProductQuantity();
+        $price = $this->getProductPrice();
+        $finalPrice = $quantity * $price;
+        $this->finalPrice = $finalPrice;
     }
 }

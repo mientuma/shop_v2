@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ loop.index }}</td>
                 <td><a href="{{ path('adminOrdersDetails', {'orderId': order.id}) }}">{{ order.id }}</a></td>
-                <td><a href="{{ path('adminUserView', {'id': order.user.id}) }}">{{ order.user.username}}</a></td>
+                <td><a href="{{ path('adminUserView', {'id': order.user.id}) }}" target="_blank">{{ order.user.username}}</a></td>
                 <td>{{ order.orderTime|date("d.m.y H:i:s") }}</td>
                 <td>{{ order.status }}</td>
                 <td><a href="{{ path('adminOrdersDetails', {'orderId': order.id}) }}" class="btn btn-default">Szczegóły</a> </td>

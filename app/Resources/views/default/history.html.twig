@@ -23,7 +23,11 @@
                         <td><a href="{{ path('adminUserView', {'id': history.userId}) }}" target="_blank">{{ history.username }}</a></td>
                         <td>{{ history.quantity }} szt.</td>
                         <td>{{ history.currentQuantity }} szt.</td>
-                        <td><a href="{{ path('adminOrdersDetails', {'orderId': history.statusId}) }}" target="_blank">{{ history.status }} #{{ history.statusId }}</a></td>
+                        {% if history.status == "Zamówienie" %}
+                            <td><a href="{{ path('adminOrdersDetails', {'orderId': history.statusId}) }}" target="_blank">{{ history.status }} #{{ history.statusId }}</a></td>
+                        {% elseif history.status == "Dostawa" %}
+                            <td><a href="{{ path('adminSupplyDetails', {'id': history.statusId}) }}" target="_blank">{{ history.status }} #{{ history.statusId }}</a></td>
+                        {% endif %}
                     </tr>
             {% endfor %}
         </table>

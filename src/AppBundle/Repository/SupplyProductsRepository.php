@@ -16,4 +16,11 @@ class SupplyProductsRepository extends \Doctrine\ORM\EntityRepository
             'productId' => $id
         ));
     }
+
+    public function findBySupplyId($supplyId)
+    {
+        return $this->findBy(array(
+            'supplyId' => $supplyId
+        ));
+    }
 }
