@@ -17,6 +17,28 @@ class ConvertProductPrice
 
     public function convertProductPrice($products)
     {
+        $productsCount = count($products);
+        if($productsCount > 1)
+        {
+            $this->convertMultipleProductsPrice($products);
+        }
+        else
+        {
+            $this->convertSingleProductPrice($products);
+        }
+
+    }
+
+    public function convertSingleProductPrice($product)
+    {
+        $this->product = $product;
+        $price = $this->product->getPrice();
+        $moneyFormatPrice = number_format($price, 2);
+        $this->product->setPrice($moneyFormatPrice);
+    }
+
+    public function convertMultipleProductsPrice($products)
+    {
         foreach ($products as $product)
         {
             $this->product = $product;

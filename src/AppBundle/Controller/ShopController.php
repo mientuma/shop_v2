@@ -38,6 +38,8 @@ class ShopController extends BaseController
             $request->query->getInt('limit', 4)
         );
 
+        $this->get('app.convert.product.price')->convertProductPrice($result);
+
         return $this->render('default/shop.html.twig', array(
             'products' => $result
         ));
@@ -49,6 +51,7 @@ class ShopController extends BaseController
     public function showProductInfoAction($id)
     {
         $product = $this->getDoctrine()->getRepository('AppBundle:Products')->find($id);
+        $this->get('app.convert.product.price')->convertProductPrice($product);
         return $this->render('default/shopProductInfo.html.twig', array(
             'product' => $product
         ));
