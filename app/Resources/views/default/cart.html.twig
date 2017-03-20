@@ -49,8 +49,8 @@
                         <th>{{ cart.product.name }}</th>
                         <th><input type="text" name="quantity_{{ cart.id }}" value="{{ cart.quantity }}"/></th>
                         <th>{{ cart.product.quantity }}</th>
-                        <th>{{ cart.product.price }}</th>
-                        <th>{{ cart.finalPrice }} PLN</th>
+                        <th>{{ cart.product.price|number_format(2, '.', ',') }}</th>
+                        <th>{{ cart.finalPrice|number_format(2, '.', ',') }} PLN</th>
                         <th><a href="{{ path('deleteFromCart', {'id': cart.product.id}) }}" class="btn btn-danger">Usuń</a> </th>
                     </tr>
         {% endfor %}
@@ -91,7 +91,7 @@
                 {% for deliveryOption in deliveryOptions %}
                     <tr>
                         <td>{{ deliveryOption.name }}</td>
-                        <td>{{ deliveryOption.price }} PLN</td>
+                        <td>{{ deliveryOption.price|number_format(2, '.', ',') }} PLN</td>
                         <td><input type="radio" name="delivery" value="{{ deliveryOption.id }}"/></td>
                     </tr>
                 {% endfor %}

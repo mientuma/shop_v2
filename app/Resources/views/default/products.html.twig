@@ -6,7 +6,7 @@
 
             <div class="product">
                 {{ product.name }} <br>
-                {{ product.price }} PLN
+                {{ product.price|number_format(2, '.', ',') }} PLN
             </div>
 
         {% endfor %}

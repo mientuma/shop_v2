@@ -78,7 +78,7 @@
         </div>
         <div class="addToCart">
             Dostępność: {{ product.quantity }} szt.<br/>
-            Cena: {{ product.price }} PLN
+            Cena: {{ product.price|number_format(2, '.', ',') }} PLN
             <a href="{{ path('addToCart', {'id': product.id}) }}" class="btn btn-default">Dodaj do koszyka</a>
         </div>
 

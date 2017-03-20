@@ -37,7 +37,7 @@
     <tr>
         <th>{{ loop.index }}.</th>
         <th>{{ product.name }}</th>
-        <th>{{ product.price }}</th>
+        <th>{{ product.price|number_format(2, '.', ',') }}</th>
         <th><a href="{{ path('showproductdetails', {'id': product.id}) }}" class="btn btn-success">Szczegóły</a> </th>
         <th><a href="{{ path('editproduct', {'id': product.id}) }}" class="btn btn-default">Edytuj</a> </th>
         <th><a href="{{ path('deleteproduct', {'id': product.id}) }}" class="btn btn-danger">Usuń</a> </th>

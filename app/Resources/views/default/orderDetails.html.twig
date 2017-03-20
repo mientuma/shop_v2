@@ -18,10 +18,10 @@
                 <tr>
                     <td>{{ loop.index }}.</td>
                     <td><a href="{{ path('shopproductinfo', {'id': orderDetail.product.id}) }}" target="_blank">{{ orderDetail.product.name }}</a></td>
-                    <td>{{ orderDetail.productPrice }} PLN</td>
+                    <td>{{ orderDetail.productPrice|number_format(2, '.', ',') }} PLN</td>
                     <td>{{ orderDetail.productQuantity }}</td>
                     <td>{{ orderDetail.productReserved }}</td>
-                    <td>{{ orderDetail.finalPrice }} PLN</td>
+                    <td>{{ orderDetail.finalPrice|number_format(2, '.', ',') }} PLN</td>
                     <td>{{ orderDetail.productStatus }}</td>
                 </tr>
             {% endfor %}
@@ -40,7 +40,7 @@
                 <td></td>
                 <td>Sposób dostawy:</td>
                 <td>{{ order.delivery.name }}</td>
-                <td>{{ order.delivery.price }} PLN</td>
+                <td>{{ order.delivery.price|number_format(2, '.', ',') }} PLN</td>
                 <td></td>
             </tr>
             <tr>

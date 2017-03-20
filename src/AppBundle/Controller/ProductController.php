@@ -29,7 +29,6 @@ class ProductController extends BaseController
     public function showProductsAction()
     {
         $products = $this->getDoctrine()->getRepository('AppBundle:Products')->findAll();
-        $this->get('app.convert.product.price')->convertProductPrice($products);
         return $this->render('default/showProduct/showProduct.html.twig', array(
             'products' => $products
         ));

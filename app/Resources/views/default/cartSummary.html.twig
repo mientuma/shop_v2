@@ -40,8 +40,8 @@
                         <th>{{ loop.index }}.</th>
                         <th>{{ cart.product.name }}</th>
                         <th>{{ cart.quantity }}</th>
-                        <th>{{ cart.product.price }} PLN</th>
-                        <th>{{ cart.finalPrice }} PLN</th>
+                        <th>{{ cart.product.price|number_format(2, '.', ',') }} PLN</th>
+                        <th>{{ cart.finalPrice|number_format(2, '.', ',') }} PLN</th>
                     </tr>
         {% endfor %}
                 <tr>
@@ -56,7 +56,7 @@
                     <th></th>
                     <th>Dostawa:</th>
                     <th>{{ deliveryData.name }}</th>
-                    <th>{{ deliveryData.price }} PLN</th>
+                    <th>{{ deliveryData.price|number_format(2, '.', ',') }} PLN</th>
                 </tr>
                 <tr>
                     <th></th>

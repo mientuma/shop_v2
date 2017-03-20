@@ -16,9 +16,9 @@
                 <tr>
                     <td>{{ loop.index }}.</td>
                     <td><a href="{{ path('shopproductinfo', {'id': supplyDetail.product.id}) }}" target="_blank">{{ supplyDetail.product.name }}</a></td>
-                    <td>{{ supplyDetail.productPrice }} PLN</td>
+                    <td>{{ supplyDetail.productPrice|number_format(2, '.', ',') }} PLN</td>
                     <td>{{ supplyDetail.productQuantity }}</td>
-                    <td>{{ supplyDetail.finalPrice }} PLN</td>
+                    <td>{{ supplyDetail.finalPrice|number_format(2, '.', ',') }} PLN</td>
                 </tr>
             {% endfor %}
             <tr>
