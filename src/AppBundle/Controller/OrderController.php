@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Orders;
+use AppBundle\Event\OrderEmailEvent;
 use AppBundle\Form\OrderForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,6 +49,9 @@ class OrderController extends BaseController
 
             $order->setStatus('Oczekuje na wpłatę');
             $em->flush();
+
+            $dispatcher = $this->container->get('event_dispatcher');
+            $dispatcher->dispatch('app.order.email', new OrderEmailEvent($order));
 
             return $this->redirectToRoute('orderList');
         }

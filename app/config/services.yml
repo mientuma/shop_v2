@@ -21,9 +21,11 @@ services:
     class: AppBundle\Utils\ProductHistoryManager
     arguments: ["@supply.products", "@ordered.products", "@doctrine.orm.entity_manager", "@product.history"]
 
-  app.convert.product.price:
-    class: AppBundle\Utils\ConvertProductPrice
-    arguments: ["@products"]
+  app.order.email.listener.service:
+    class: AppBundle\EventListener\OrderEmailListener
+    arguments: ["@mailer"]
+    tags:
+        - { name: kernel.event_listener, event: app.order.email, method: onOrderEmailEvent}
 
 
 
