@@ -25,6 +25,8 @@ class OrderEmailListener
             ->setFrom('hpnorek@gmail.com')
             ->setTo('mientuma@gmail.com')
             ->setBody('Właśnie złożono zamówienie nr. '.$orderId);
+        $this->mailer->send($message);
+
     }
 
 }
